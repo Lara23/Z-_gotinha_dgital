@@ -37,8 +37,8 @@ class LocalizaoList extends React.Component {
       return (
         <ScrollView style={styles.localizacaoList}>
           {this.state.movies.map(this.renderMovieItem.bind(this))}
+          // que 
         </ScrollView>
-        // que 
       );
     }
 

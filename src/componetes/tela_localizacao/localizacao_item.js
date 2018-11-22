@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     width: '100%'
   },
 
-  movieItemHeader: {
+  localizacaoItemHeader: {
     height: 156,
     margin: 0,
     position: 'relative',

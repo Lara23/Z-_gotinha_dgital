@@ -16,10 +16,10 @@ class AppHeader extends React.Component {
             <Text style={styles.appHeaderTitleText}>{this.props.title}</Text>
           </View>
           <View>
-            <TouchableHighlight onPress={this._logout.bind(this)} underlayColor="transparent">
+            <TouchableHighlight onPress={this._back.bind(this)} underlayColor="transparent">
               <Image
                 style={styles.appHeaderButton}
-                source={require('../../assets/logout_icon.png')}
+                source={require('../../assets/back_icon.png')}
               />
              </TouchableHighlight>
           </View>
@@ -28,9 +28,8 @@ class AppHeader extends React.Component {
     );
   }
   
-  async _logout () {
-    await AsyncStorage.removeItem('current_user_token');
-    this.props.navigation.navigate('AuthLoading');
+  async _back () {
+    //voltar
   }
 }
 export default withNavigation(AppHeader);
