@@ -13,6 +13,19 @@ class LocalizaoList extends React.Component {
     }
   }
 
+
+  async fetchPostos () {
+    try {
+      let postos_json = await fetch('http://192.168.3.104:3000/api/v1/movies');
+      console.log(postos_json);
+      let postosResponseJson = await postos_json.json();
+      return postosResponseJson;
+    }catch (error) {
+      console.log(error);
+    }
+
+  }
+
   renderLocalizacaoItem (posto) {
     return <LocalizacaoItem
             name={posto.name}
