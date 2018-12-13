@@ -6,7 +6,7 @@ var logger = require('morgan');
 var mysql = require('mysql');
 
 var indexRouter = require('./routes/index');
-var moviesRouter = require('./routes/movies');
+var localizacaoRouter = require('./routes/localizacao');
 
 var app = express();
 
@@ -19,19 +19,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(function(req, res, next) {
-  res.locals.connection = mysql.createConnection({
-		host     : 'localhost',
-		user     : 'root',
-		password : 'root',
-		database : 'movies',
-    insecureAuth: true
-	});
-	res.locals.connection.connect();
-	next();
-})
+
+// app.use(function(req, res, next) {
+//   res.locals.connection = mysql.createConnection({
+// 		host     : 'localhost',
+// 		user     : 'root',
+// 		password : 'root',
+// 		database : '',
+//     insecureAuth: true
+// 	});
+// 	res.locals.connection.connect();
+// 	next();
+// })
+
 app.use('/', indexRouter);
-app.use('/api/v1/movies', moviesRouter);
+app.use('/localizacao', localizacaoRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -40,7 +42,6 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
