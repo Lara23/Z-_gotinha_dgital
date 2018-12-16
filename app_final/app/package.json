@@ -17,6 +17,7 @@
     "react-native-elements": "^0.19.1",
     "react-native-md-textinput": "github:csath/react-native-md-textinput",
     "react-navigation": "^2.18.1",
-    "url-parse": "^1.4.4"
+    "url-parse": "^1.4.4",
+    "yarn": "^1.12.3"
   }
 }
