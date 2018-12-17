@@ -5,7 +5,7 @@ import HomeScreen from './src/pages/home-screen';
 import LoginScreen from './src/pages/login-screen';
 import AuthLoadingScreen from './src/pages/auth-loading-screen';
 import RegisterScreen from './src/pages/register-screen';
-import PerfilScreen from './src/pages/perfil-screen';
+import NotificacaoScreen from './src/pages/notificacoes-screen';
 
 const Rotas = createStackNavigator(
   {
@@ -21,13 +21,12 @@ const Rotas = createStackNavigator(
     Register: {
       screen: RegisterScreen,
     },
-
-    Perfil: {
-      screen: PerfilScreen,
+    Notificacao: {
+      screen: NotificacaoScreen,
     }
   },
   {
-    initialRouteName: 'Perfil',
+    initialRouteName: 'Notificacao',
     headerMode: 'none'
   }
 );
