@@ -26,7 +26,7 @@ const Rotas = createStackNavigator(
     }
   },
   {
-    initialRouteName: 'Notificacao',
+    initialRouteName: 'Login',
     headerMode: 'none'
   }
 );

@@ -12,11 +12,11 @@ export default class HomeScreen extends React.Component {
         <View style={styles.container}>
           <View style={styles.grid}>
           
-            <View style={styles.grid1}>
+            <View style={styles.grid1} onPress={() => {this.props.navigation.navigate('Perfil')}}>
             <Image style={styles.icones} source={require('../img/icone_vacina.png') } />
               <Text style={styles.legenda}>VACINAS</Text>
               <Image style={styles.icones} source={require('../img/icone_coracao.png')}  />
-              <Text style={styles.legenda} onPress={() => {this.props.navigation.navigate('Perfil')}} >CARTEIRINHA</Text>
+              <Text style={styles.legenda}  >CARTEIRINHA</Text>
             </View>
             
             <View style={styles.grid2}>

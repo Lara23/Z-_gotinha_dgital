@@ -34,7 +34,7 @@ export default class NotificacaoItem extends React.Component {
                 accessibilityLabel="Resolver tarefa"
                 onPress={this._resolver.bind(this)}
               />            
-          </Background>
+          
         </View>
     );
   }
@@ -48,30 +48,30 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderRadius: 2,
     elevation: 1,
-    width: '100%';
-    display: flex;
-    flex-direction: column;
-    justify-contents:center;
-    align-itens: center;
+    width: '100%',
+    flex:1,
+    
+    justifyContent: 'center',
+    alignItems: 'center'
   },
 
   hoario: {
-    font-size: 15px;
+    fontSize: 15
   },
 
   dia: {
-    font-size: 15px;
+    fontSize: 15
   },
 
   combate: {
-    font-size: 12px;
+    fontSize: 12
   },
 
   textposto: {
-    font-size: 13px;
+    fontSize: 13
   },
 
   nomeposto: {
-    font-size: 15px;
+    fontSize: 15
   },
 });
