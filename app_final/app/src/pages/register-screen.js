@@ -1,8 +1,10 @@
 import React from 'react';
-import {Text, View, Button, Alert, StyleSheet, ImageBackground, StatusBar, Image, NativeModules} from 'react-native';
+import {Text, View, Alert, StyleSheet, ImageBackground, StatusBar, Image, NativeModules} from 'react-native';
 import { Font } from 'expo';
 import TextField from 'react-native-md-textinput';
 import parse from 'url-parse';
+import { Button } from 'react-native-elements';
+
 const {hostname} = parse(NativeModules.SourceCode.scriptURL, true);
 
 
@@ -21,40 +23,30 @@ export default class RegisterScreen extends React.Component {
 
   render() {
     return (
-      <ImageBackground style={styles.backgroundContainer} imageStyle={styles.backgroundImage} source={require('../../assets/initial_bg.png')} >
+      <ImageBackground style={styles.backgroundContainer} imageStyle={styles.backgroundImage} source={require('../img/fundo_login.png')} >
         <StatusBar hidden={true} />
-        <Image source={require('../../assets/logo.png')} style={styles.logo}/>
-        {
-          this.state.fontLoaded ? (
-            <Text style={[styles.logotipo, {fontFamily: 'hind-bold',fontSize: 32}]}>DOURADOS</Text>
-          ) : null
-        }
-        {
-          this.state.fontLoaded ? (
-            <Text style={[styles.title, {fontFamily: 'hind-bold',fontSize: 20}]}>CADASTRO</Text>
-          ) : null
-        }
+      
         <View style={styles.registerForm}>
+          <Text style={styles.titulo}>Cadastro</Text>
           <TextField label={'Email'} dense={true} highlightColor={'#FFFFFF'} textColor={'#ffffff'} wrapperStyle={{width:'100%'}} onChangeText={(text) => this._updateField(text, 'email')} keyboardType={'email-address'} value={this.state.user.email}/>
           <TextField label={'Senha'} dense={true} highlightColor={'#FFFFFF'} textColor={'#ffffff'} wrapperStyle={{width:'100%'}} onChangeText={(text) => this._updateField(text, 'password')} secureTextEntry={true} value={this.state.user.password}/>
-          <TextField label={'Repita a senha'} dense={true} highlightColor={'#FFFFFF'} textColor={'#ffffff'} wrapperStyle={{width:'100%'}} onChangeText={(text) => this._updateField(text, 'checkPassword')} secureTextEntry={true} value={this.state.user.checkPassword}/>
-        </View>
-        <View style={{width: '80%', marginBottom: 10}}>
+          <TextField label={'Reenter Senha'} dense={true} highlightColor={'#FFFFFF'} textColor={'#ffffff'} wrapperStyle={{width:'100%'}} onChangeText={(text) => this._updateField(text, 'password')} secureTextEntry={true} value={this.state.user.password}/>
+          <View style={{width: '80%', marginBottom: 10, marginTop: 50, alignSelf: 'center'}}>
           <Button 
-              title='Cadastrar'
-              color='#1E51A4'
-              onPress={() => {this._submit_register_form()}}
-              accessibilityLabel='Botão que realiza o cadastro do usuário'
+              backgroundColor ='#1E51A4'
+              title='CADASTRAR'
+              color='#fafafa'
+              onPress={() => {this.props.navigation.navigate('Login')}}
+              accessibilityLabel='Botão que realiza o login do usuário'
+              rounded = {true}
             />
         </View>
-        <View style={{width: '80%'}}>
-          <Button 
-              title='Voltar'
-              color='#d32f2f'
-              onPress={() => {this.props.navigation.navigate('AuthLoading')}}
-              accessibilityLabel='Botão que realiza o cadastro do usuário'
-            />
         </View>
+        
+        <View style={{marginBottom: 20}}>
+          <Text style={{color: '#fafafa', alignSelf: 'center'}}>Cadastro para mais de um membro?</Text>
+        </View>
+        
       </ImageBackground>
     );
   }
@@ -151,6 +143,7 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   registerForm: {
+    marginTop: 100,
     width: '80%',
     display: 'flex',
     alignItems: 'flex-start',
@@ -158,8 +151,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     padding: 10,
     borderRadius: 2,
-    backgroundColor: '#1E51A4',
-    opacity: 0.6,
+    backgroundColor: '#fafafa',
     marginBottom: 20
   },
   registerButton: {
@@ -169,5 +161,11 @@ const styles = StyleSheet.create({
     width: '80%',
     borderRadius: 2,
 
+  },
+  titulo:{
+    fontSize: 20,
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    marginTop: 35
   }
 });

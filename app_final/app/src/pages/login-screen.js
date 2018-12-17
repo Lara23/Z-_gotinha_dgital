@@ -1,7 +1,10 @@
 import React from 'react';
-import {Text, View, Button, Alert, StyleSheet, ImageBackground, StatusBar, Image, NativeModules, AsyncStorage} from 'react-native';
+import {Text, View, Alert, StyleSheet, ImageBackground, StatusBar, Image, NativeModules, AsyncStorage} from 'react-native';
 import { Font } from 'expo';
 import TextField from 'react-native-md-textinput';
+import { Button } from 'react-native-elements'
+
+
 import parse from 'url-parse';
 const {hostname} = parse(NativeModules.SourceCode.scriptURL, true);
 
@@ -20,33 +23,32 @@ export default class LoginScreen extends React.Component {
 
   render() {
     return (
-      <ImageBackground style={styles.backgroundContainer} imageStyle={styles.backgroundImage} source={require('../../assets/initial_bg.png')} >
+      <ImageBackground style={styles.backgroundContainer} imageStyle={styles.backgroundImage} source={require('../img/fundo_login.png')} >
         <StatusBar hidden={true} />
-        <Image source={require('../../assets/logo.png')} style={styles.logo}/>
-        {
-          this.state.fontLoaded ? (
-            <Text style={[styles.logotipo, {fontFamily: 'hind-bold',fontSize: 32}]}>DOURADOS</Text>
-          ) : null
-        }
+      
         <View style={styles.loginForm}>
+          <Text style={styles.titulo}>Login</Text>
           <TextField label={'Email'} dense={true} highlightColor={'#FFFFFF'} textColor={'#ffffff'} wrapperStyle={{width:'100%'}} onChangeText={(text) => this._updateField(text, 'email')} keyboardType={'email-address'} value={this.state.user.email}/>
           <TextField label={'Senha'} dense={true} highlightColor={'#FFFFFF'} textColor={'#ffffff'} wrapperStyle={{width:'100%'}} onChangeText={(text) => this._updateField(text, 'password')} secureTextEntry={true} value={this.state.user.password}/>
-        </View>
-        <View style={{width: '80%', marginBottom: 10}}>
+          <View style={{width: '80%', marginBottom: 10, marginTop: 50, alignSelf: 'center'}}>
           <Button 
-              title='Entrar'
-              color='#1E51A4'
-              onPress={() => {this._submit_login_form()}}
+              backgroundColor ='#1E51A4'
+              title='LOGIN'
+              color='#fafafa'
+              onPress={() => {this.props.navigation.navigate('Home')}}
               accessibilityLabel='Botão que realiza o login do usuário'
+              rounded = {true}
             />
         </View>
-        <View style={{width: '80%', marginBottom: 10}}>
-          <Button 
-              title='Registrar'
-              color='#5b7dd6'
+        </View>
+        
+        <View style={{marginBottom: 20}}>
+          <Text
               onPress={() => {this.props.navigation.navigate('Register')}}
               accessibilityLabel='Botão que realiza o cadastro do usuário'
-            />
+              style={{color: '#fafafa', marginBottom: 10, alignSelf: 'center'}}
+            > Deseja fazer um cadastro? </Text>
+          <Text style={{color: '#fafafa', alignSelf: 'center'}}>Esqueceu a senha?</Text>
         </View>
       </ImageBackground>
     );
@@ -140,6 +142,7 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   loginForm: {
+    marginTop: 100,
     width: '80%',
     display: 'flex',
     alignItems: 'flex-start',
@@ -147,17 +150,23 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     padding: 10,
     paddingBottom: 40,
-    borderRadius: 2,
-    backgroundColor: '#1E51A4',
-    opacity: 0.6,
+    borderRadius: 5,
+    backgroundColor: '#fafafa',
+    
     marginBottom: 20
   },
   loginButton: {
     backgroundColor: '#1E51A4',
-    alignItems: 'center',
+    alignSelf: 'center',
     padding: 10,
     width: '80%',
     borderRadius: 2,
 
+  },
+  titulo:{
+    fontSize: 20,
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    marginTop: 35
   }
 });
